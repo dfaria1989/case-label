@@ -1,5 +1,0 @@
-require('./init');
-
-module.exports = {
-
-}

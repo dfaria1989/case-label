@@ -5,7 +5,8 @@ services:
     build: .
     restart: always
     volumes:     
-      - ./src/:/usr/src/clean-node-api/src
+      - ./src/:/usr/src/ts-node-api/src
+      - ./node_modules:/usr/src/ts-node-api/node_modules
     ports:
       - "3060:3060"
     depends_on:

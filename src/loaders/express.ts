@@ -16,15 +16,11 @@ export default ({ app }: { app: any }): void => {
     next(err);
   });
 
-  /// error handlers
   app.use((err: any, req: any, res: any, next: any) => {
-    /**
-     * Handle 401 thrown by express-jwt library
-     */
-    if (err.name === 'UnauthorizedError') {
-      return res.status(err.status).send({ message: err.message }).end();
+    if (err.status === 404) {
+      return res.status(err.status).send({ message: err.message, url: req.originalUrl }).end();
     }
-    return next(err);
+    next(err);
   });
 
   app.use((err: any, req: any, res: any) => {

@@ -1,5 +1,5 @@
-import express from "express";
-import { expressInit, Logger } from "./loaders";
+import express from 'express';
+import { expressInit, Logger } from './loaders';
 
 const app = express();
 expressInit({ expressApp: app });
@@ -12,7 +12,7 @@ app
       ################################################
     `);
   })
-  .on("error", (err: any) => {
+  .on('error', (err: any) => {
     Logger.error(err);
     process.exit(1);
   });
