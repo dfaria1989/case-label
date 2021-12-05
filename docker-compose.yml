@@ -1,0 +1,22 @@
+version: '3'
+services:
+  ts-node-api:
+    container_name: ts-node-api
+    build: .
+    restart: always
+    volumes:     
+      - ./src/:/usr/src/clean-node-api/src
+    ports:
+      - "3060:3060"
+    depends_on:
+      - mongo
+    links:
+      - mongo
+    command: npm run debug
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    restart: unless-stopped
