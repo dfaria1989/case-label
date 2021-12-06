@@ -1,11 +1,10 @@
 import UserModel from '../models/user';
 import bcryptjs from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import config from '../config';
 
 export default class AuthService extends UserModel {
   static async auth(password: string, username: string) {
-    const JWT_SECRET = 'eswdsdsdsae3e3_232323edsdss';
-
     try {
       const user: any = await UserModel.findOne({
         username: username
@@ -14,7 +13,7 @@ export default class AuthService extends UserModel {
       if (!user) return { status: false, message: 'Invalid username or password!' };
 
       if (await bcryptjs.compare(password, user?.password)) {
-        const token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET);
+        const token = jwt.sign({ id: user._id, username: user.username }, config.jwt_secret as string);
         return { status: true, message: token };
       }
 

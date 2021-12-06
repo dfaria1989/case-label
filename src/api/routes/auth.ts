@@ -1,7 +1,7 @@
 import { Router } from 'express';
-// import middlewares from '../middlewares';
+import middlewares from '../middlewares';
 import { Auth } from '../controllers';
 
 export default (app: Router): void => {
-  app.post('/auth/login', Auth.login);
+  app.post('/auth/login', middlewares.isValidRequest, Auth.login);
 };
