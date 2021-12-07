@@ -1,0 +1,228 @@
+{
+	"info": {
+		"_postman_id": "09bb0463-c4c2-4593-a8be-26f85248a615",
+		"name": "Gyant -  challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add User",
+			"request": {
+				"auth": {
+					"type": "bearer"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"teste\",\r\n    \"password\": \"doctortest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3060/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3060",
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"teste\",\r\n    \"password\": \"doctortest\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3060/api/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3060",
+					"path": [
+						"api",
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Cases",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWVhMjRkMTM0M2IwOGY0OTFmOWMzMyIsInVzZXJuYW1lIjoiZmFyaWEiLCJpYXQiOjE2Mzg4MzQ4MTR9.za7lSOPXKZFSmJGyt4pjWY3YqPygaw8hBiuje00yzIQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n    \"case\": \"The patient is a 32 year old female who presents to the Urgent Care complaining of sore throat that started 7 days ago. Developed into post nasal drip and then cough. No measured fevers. Had chills and body aches at the onset that resolved after the first day. A little facial headache with the congestion at times; better today. Some pressure on and off in the ears, no pain, hearing loss or tinnitus. Cough is mostly dry, sometimes productive of clear sputum. Denies shortness of breath. Never smoker. Has never needed inhalers. No history of pneumonia. Currently treating with ibuprofen which helps. Tried some over-the-counter Mucinex ES and vitamin C.\"\r\n},\r\n{\r\n    \"case\": \"The patient is a 32 year old. Tried some over-the-counter Mucinex ES and vitamin D.\"\r\n}\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3060/api/cases",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3060",
+					"path": [
+						"api",
+						"cases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Conditions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWVhMjRkMTM0M2IwOGY0OTFmOWMzMyIsInVzZXJuYW1lIjoiZmFyaWEiLCJpYXQiOjE2Mzg4MzQ4MTR9.za7lSOPXKZFSmJGyt4pjWY3YqPygaw8hBiuje00yzIQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3060/api/conditions",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3060",
+					"path": [
+						"api",
+						"conditions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Patch Case Label",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWVhMjRkMTM0M2IwOGY0OTFmOWMzMyIsInVzZXJuYW1lIjoiZmFyaWEiLCJpYXQiOjE2Mzg4MzQ4MTR9.za7lSOPXKZFSmJGyt4pjWY3YqPygaw8hBiuje00yzIQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3060/api/cases/:caseid/conditions/:conditionid",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3060",
+					"path": [
+						"api",
+						"cases",
+						":caseid",
+						"conditions",
+						":conditionid"
+					],
+					"variable": [
+						{
+							"key": "caseid",
+							"value": "61aebbb7ba90c691e616bc04"
+						},
+						{
+							"key": "conditionid",
+							"value": "61aea003eeb41334bae0385a"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cases",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxYWVhMjRkMTM0M2IwOGY0OTFmOWMzMyIsInVzZXJuYW1lIjoiZmFyaWEiLCJpYXQiOjE2Mzg4MzQ4MTR9.za7lSOPXKZFSmJGyt4pjWY3YqPygaw8hBiuje00yzIQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3060/api/cases?viewed=false",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3060",
+					"path": [
+						"api",
+						"cases"
+					],
+					"query": [
+						{
+							"key": "viewed",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
