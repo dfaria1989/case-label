@@ -12,7 +12,7 @@ services:
       - mongo
     links:
       - mongo
-    command: sh -c "npm run debug && npm run seed"
+    command: sh -c "npm run debug"
 
   mongo:
     container_name: mongo

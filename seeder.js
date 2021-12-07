@@ -38,7 +38,6 @@ const conditions = JSON.parse(fs.readFileSync('./seeds/conditions.json'));
     await mongoose.connect('mongodb://localhost:27017/case-label');
     await modelCondition.deleteMany(); //mongo:27017/
     const data = await modelCondition.create(conditions);
-    console.log(data);
   } catch (error) {
     console.error(error);
   }

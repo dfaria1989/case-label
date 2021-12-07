@@ -11,21 +11,16 @@ export interface IConditionModel extends Document {
   code: string;
 }
 
-const conditionSchema: Schema = new Schema(
-  {
-    ICD_10: {
-      type: String,
-      required: true
-    },
-    ICD_10_Description: {
-      type: String,
-      trim: true,
-      required: true
-    }
+const conditionSchema: Schema = new Schema({
+  ICD_10: {
+    type: String,
+    required: true
   },
-  {
-    collection: 'condition'
+  ICD_10_Description: {
+    type: String,
+    trim: true,
+    required: true
   }
-);
+});
 
 export default mongoose.model<IConditionModel>('Condition', conditionSchema);
