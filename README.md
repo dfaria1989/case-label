@@ -46,6 +46,17 @@ It will install all the dependencies on your machine, copy them and initialize t
 npm run seed
 ```
 
+### 4. Test the endpoints
+- To test all cases, you must import the collection Gyant-challenge.postman_collection into Postamn(is in project root).
+
+Must be run by the respective order:
+- Add user
+- Login with chosen user (save the jwt)
+- Create some cases (use the Authorization with bearer token)
+- Get conditions (use the Authorization with bearer token)
+- Get cases (use the Authorization with bearer token)
+- Patch case label (use the id from conditions && cases and use the Authorization with bearer token)
+
 ----
 
 ## Tests
