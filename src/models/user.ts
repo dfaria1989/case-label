@@ -11,7 +11,7 @@ export interface IUserModel extends Document {
   password: string;
 }
 
-const UserSchema: Schema = new Schema(
+const userSchema: Schema = new Schema(
   {
     username: {
       type: String,
@@ -26,8 +26,9 @@ const UserSchema: Schema = new Schema(
     }
   },
   {
+    timestamps: true,
     collection: 'users'
   }
 );
 
-export default mongoose.model<IUserModel>('UserSchema', UserSchema);
+export default mongoose.model<IUserModel>('user', userSchema);

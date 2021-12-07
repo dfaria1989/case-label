@@ -1,12 +1,10 @@
 import { Response, Request } from 'express';
-import CaseService from '../../services/case';
+import ConditionService from '../../services/condition';
 
 export default class Cases {
-  static async create(req: Request, res: Response): Promise<any> {
-    const cases = req.body;
-
+  static async findAll(req: Request, res: Response): Promise<any> {
     try {
-      const response = await CaseService.create(cases);
+      const response = await ConditionService.findAll();
       return res.status(200).json(response);
     } catch (error: any) {
       return res.status(500).json(error.message);

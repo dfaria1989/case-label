@@ -10,6 +10,7 @@
     "start:dev": "set NODE_ENV=development && ts-node src/app.ts",
     "debug": "nodemon -L --watch src app.ts",
     "build": "rimraf dist && tsc",
+    "seed": "node seeder.js",
     "up": "npm install && docker-compose up"
   },
   "author": "",
