@@ -1,23 +1,42 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react";
+import LoginForm from "./components/LoginForm";
+import "./index.css"
 
 function App() {
+  const adminUser = {
+    email: "teste@gmail.com",
+    password: "admin123"
+  }
+
+  const [user, setUser] = useState({ name: "", email: "" })
+  const [error, setError] = useState("");
+
+  const Login = details => {
+    if (details.email) {
+      setUser({
+        name: details.name,
+        email: details.email
+      })
+    } else {
+      console.log("aqui")
+      setError("eror in login")
+    }
+  }
+
+  const Logout = () => {
+    setUser({ name: "", email: "" })
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and sdave to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {
+        (user.email != "") ?
+          (<div className="welcome">
+            <h2>Logged in as a {user.email}  | <button onClick={Logout}>Log Out </button></h2>
+          </div>)
+          : (<LoginForm Login={Login} error={error} />)
+      }
     </div>
   );
 }
