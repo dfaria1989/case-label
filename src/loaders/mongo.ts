@@ -1,7 +1,13 @@
-import mongoose from 'mongoose';
 import config from '../config';
+import mongoose from 'mongoose';
 
-mongoose.connect(`${config.database.MONGODB_URI}${config.database.MONGODB_DB_MAIN}`, {
-  serverSelectionTimeoutMS: 20000,
-  connectTimeoutMS: 20000
-});
+mongoose
+  .connect('mongodb://mongodb:27017/case-label', {
+    socketTimeoutMS: 30000,
+    serverSelectionTimeoutMS: 30000,
+    connectTimeoutMS: 30000
+  })
+  .then(() => console.info(`OK`))
+  .catch((err: any) => {
+    console.error(`MongoDB : ${err}`);
+  });

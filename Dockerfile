@@ -1,9 +1,10 @@
 FROM node:latest
 
-WORKDIR /usr/src/ts-node-api
+WORKDIR /app
 
 COPY  package.json ./
 COPY  seeder.js ./
+COPY  nodemon.json ./
 COPY  ./seeds ./
-
 COPY . .
+

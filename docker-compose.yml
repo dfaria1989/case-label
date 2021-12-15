@@ -5,18 +5,18 @@ services:
     build: .
     restart: always
     volumes:     
-      - ./src/:/usr/src/ts-node-api/src
+      - ./src/:/app/src
     ports:
       - "3060:3060"
     depends_on:
-      - mongo
+      - mongodb
     links:
-      - mongo
+      - mongodb
     command: sh -c "npm run debug"
 
-  mongo:
-    container_name: mongo
+  mongodb:
+    container_name: mongodb
     image: mongo
+    restart: always
     ports:
       - "27017:27017"
-    restart: unless-stopped

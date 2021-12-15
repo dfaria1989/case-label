@@ -1,7 +1,7 @@
 import isValidRequest from './isValidRequest';
-import isValidToken from './isValidToken';
+import isAuth from './isAuth';
 
 export default {
   isValidRequest,
-  isValidToken
+  isAuth
 };
