@@ -50,17 +50,43 @@ const userSchema = new mongoose.Schema({
 
 const modelUser = mongoose.model('user', userSchema);
 
+const caseSchema = new Schema({
+  case: {
+    type: String,
+    required: true
+  },
+  viewed: {
+    type: Boolean,
+    default: false
+  },
+  doctor: {
+    type: Schema.Types.ObjectId,
+    ref: 'user'
+  },
+  condition: {
+    type: Schema.Types.ObjectId,
+    ref: 'condition'
+  }
+});
+
+const modelCase = mongoose.model('case', caseSchema);
+
 (async () => {
   try {
     const conditions = JSON.parse(fs.readFileSync('./seeds/conditions.json'));
-    await mongoose.connect('mongodb://mongodb:27017/case-label');
+    const cases = JSON.parse(fs.readFileSync('./seeds/cases.json'));
+
+    await mongoose.connect('mongodb://localhost:27017/case-label');
     await modelCondition.deleteMany(); //mongo:27017/
     await modelCondition.create(conditions);
-    await modelUser.deleteMany();
 
-    const passwordHashed = await bcryptjs.hash('admin', 10);
+    await modelCase.deleteMany();
+    await modelCase.create(cases);
+
+    await modelUser.deleteMany();
+    const passwordHashed = await bcryptjs.hash('doctortest', 10);
     await modelUser.create({
-      username: 'admin',
+      username: 'doctortest',
       password: passwordHashed
     });
   } catch (error) {

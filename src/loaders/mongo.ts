@@ -1,13 +1,14 @@
 import config from '../config';
-import mongoose from 'mongoose';
+//import mongoose require('mongoose');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const mongoose = require('mongoose');
 
 mongoose
   .connect('mongodb://mongodb:27017/case-label', {
-    socketTimeoutMS: 30000,
-    serverSelectionTimeoutMS: 30000,
-    connectTimeoutMS: 30000
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   })
-  .then(() => console.info(`OK`))
+  .then(() => console.log('MongoDB connected...'))
   .catch((err: any) => {
     console.error(`MongoDB : ${err}`);
   });

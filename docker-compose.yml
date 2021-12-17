@@ -3,6 +3,7 @@ services:
   ts-node-api:
     container_name: ts-node-api
     build: .
+    dns_search: ''
     restart: always
     volumes:     
       - ./src/:/app/src

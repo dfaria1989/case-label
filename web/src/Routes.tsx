@@ -1,15 +1,26 @@
 import React from 'react';
-import {BrowserRouter, Switch, Route} from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
-import Login from './components/Login';
+import Login from './components/Login/Login';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import ProtectedRoute from './components/ProtectedRoute'
 
-export const Routes:React.FC = () => {
+export const Routes: React.FC = () => {
   return (
     <BrowserRouter>
+      <div className="container mt-3">
         <Switch>
-          <Route exact path="/" component={Home}></Route>
-          <Route exact path="/login"component={Login}></Route>
-      </Switch>
+          <ProtectedRoute
+            component={Home}
+            exact 
+            path="/"
+          />
+          <Route exact path="/login" component={Login}></Route>
+          <Route path="*" component={() => (<div>Page Not Found!</div>)}></Route>
+
+        </Switch>
+      </div>
     </BrowserRouter>
 
   );
