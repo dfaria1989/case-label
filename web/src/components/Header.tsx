@@ -1,8 +1,6 @@
 import React from 'react'
 import { Container, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import Home from '../components/Home';
-import Login from '../components/Login/Login';
+import { Link, useLocation } from 'react-router-dom';
 import { logout } from "../services/auth.service";
 
 interface Props {
@@ -11,11 +9,13 @@ interface Props {
 }
 
 const Header: React.FC<Props> = () => {
+    const { state: { name } }: any = useLocation();
+
     return (
         <Navbar>
             <Container>
                 <Navbar.Collapse className="justify-content-end">
-                    <Link to={"/profile"} className="nav-link">Loged in as a: doctor</Link>
+                  Loged in as a: {name}
                     <Navbar.Text>
                         <Link to="/login" className="nav-link" onClick={async () => logout()}>Log Out</Link>
                     </Navbar.Text>

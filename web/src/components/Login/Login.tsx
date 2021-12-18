@@ -35,12 +35,13 @@ const Login: React.FC<Props> = ({ history }) => {
     setLoading(true);
 
     login(username, password).then(
-      () => {
-        history.push({
-          pathname: '/',
-        })
+      (data) => {
+       history.push({
+        pathname: '/',
+        state: data
+      }) 
         //history.push("/");
-        window.location.reload();
+      //  window.location.reload();
       },
       (error) => {
         const resMessage =
