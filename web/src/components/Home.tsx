@@ -1,28 +1,23 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import Header from '../components/Header'
-import { Button, ListGroup, Container, Row, Col, FloatingLabel, Form, Alert } from 'react-bootstrap';
+import { Button, Row, Col, Alert, Container, Form } from 'react-bootstrap';
 import Conditions from './Conditions'
 import { labelCaseCondition } from "../services/cases.service";
 import { getCases } from "../services/cases.service";
 import Cases from './Cases';
+import { CaseType } from 'types';
 
-interface Props {
-
-}
-
-type CasesType = {
-    case: string
-    _id: string
-}
+type Props = {}
 
 const Home: React.FC<Props> = () => {
     const [nextCase, setNextCase] = useState<null | string>(null)
     const [showCases, setShowCases] = useState<boolean>(false)
-    const [cases, setCases] = useState<CasesType>();
-
+    const [cases, setCases] = useState<CaseType>();
+    
     const labelCase = async (e: any) => {
         e.preventDefault()
         if (!e.currentTarget[1].value) {
+            noMoreCasesAlert()
             alert("Select the condition!")
             return
         }
@@ -32,12 +27,13 @@ const Home: React.FC<Props> = () => {
         }
 
         await labelCaseCondition(caseToLabel)
+        //set with current case id
         setNextCase(caseToLabel.caseId)
     }
 
     useEffect(() => {
         const fetchData = async () => {
-            const data: CasesType | any = await getCases()
+            const data: CaseType | any = await getCases()
             if (data) {
                 setCases(data)
                 setShowCases(true)
@@ -61,7 +57,7 @@ const Home: React.FC<Props> = () => {
         return (
             <Fragment>
                 <Col md={7} style={{ padding: 5 }}>
-                    <Cases cases={cases} />
+                    <Cases  {...cases!} />
                 </Col>
                 <Col md={5} style={{ padding: 5 }}>
                     <Conditions />

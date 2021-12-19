@@ -5,6 +5,7 @@ import Login from './components/Login/Login';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import ProtectedRoute from './components/ProtectedRoute'
+/// <reference path="types.d.ts" />
 
 export const Routes: React.FC = () => {
   return (
