@@ -1,37 +1,87 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useEffect, useState } from 'react'
 import Header from '../components/Header'
-import { Button, ListGroup, Container, Row, Col, FloatingLabel, Form } from 'react-bootstrap';
+import { Button, ListGroup, Container, Row, Col, FloatingLabel, Form, Alert } from 'react-bootstrap';
 import Conditions from './Conditions'
+import { labelCaseCondition } from "../services/cases.service";
+import { getCases } from "../services/cases.service";
+import Cases from './Cases';
+
 interface Props {
 
 }
 
+type CasesType = {
+    case: string
+    _id: string
+}
+
 const Home: React.FC<Props> = () => {
-    function alertClicked() {
-        alert('You clicked the third ListGroupItem');
+    const [nextCase, setNextCase] = useState<null | string>(null)
+    const [showCases, setShowCases] = useState<boolean>(false)
+    const [cases, setCases] = useState<CasesType>();
+
+    const labelCase = async (e: any) => {
+        e.preventDefault()
+        if (!e.currentTarget[1].value) {
+            alert("Select the condition!")
+            return
+        }
+        const caseToLabel = {
+            caseId: e.currentTarget[0].id,
+            conditionId: e.currentTarget[1].value
+        }
+
+        await labelCaseCondition(caseToLabel)
+        setNextCase(caseToLabel.caseId)
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const data: CasesType | any = await getCases()
+            if (data) {
+                setCases(data)
+                setShowCases(true)
+            } else {
+                setShowCases(false)
+            }
+        }
+        fetchData()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [nextCase]);
+
+    const noMoreCasesAlert = () => {
+        return (
+            <Alert variant="success">
+                <Alert.Heading>You are Done!</Alert.Heading>
+            </Alert>
+        )
+    }
+
+    const renderCaseLabelsMenu = () => {
+        return (
+            <Fragment>
+                <Col md={7} style={{ padding: 5 }}>
+                    <Cases cases={cases} />
+                </Col>
+                <Col md={5} style={{ padding: 5 }}>
+                    <Conditions />
+                    <Button className="float-end" style={{ marginTop: "40%" }} type="submit" variant="primary">Next Case</Button>
+                </Col>
+            </Fragment>
+        )
+    }
+
     return (
         <Fragment>
             <Header data={null} />
-            <hr style={{ height: 2, marginBottom: 15}}/>
-            <Container>
-                <Row>
-                    <Col md={7}> 
-                                <FloatingLabel controlId="floatingTextarea2" label="Patient is an 42 year old male. Chief Complaint: Establish Care and Physical HPI Hemorrhoids Bothersome Comes and goes Especially with sedentary life style Recently worse Couple nights where almost wakes patient up Gets intermittently constipated High fiber diet Patient Active Problem Diagnoses Code - Hemorrhoids 455.6E No outpatient prescriptions have been marked as taking for the encounter (Office Visit) with , C. Allergies Allergen Reactions - Pcn (Penicillins) - Morphine No past medical history on file. Past Surgical History Procedure Date - Hx knee surgery Arthroscopy age 15 for torn meniscus Family History Problem Relation of Onset - Cancer Mother Breast - Hypertension Mother - Hypertension Father History Substance Use Topics - Smoking status: Never Smoker - Smokeless tobacco: Not on file ">
-                                    <Form.Control
-                                    disabled
-                                    as="textarea"
-                                    placeholder="Leave a comment here"
-                                    style={{ minHeight: '80vh' , width: '100%' }}
-                                    />
-                                </FloatingLabel>
-                    </Col>
+            <hr style={{ height: 2, marginBottom: 15 }} />
 
-                    <Col md={5}>
-                        <Conditions/>
-                    </Col>
-                </Row>
+            <Container>
+                <Form onSubmit={labelCase} className='form'>
+                    <Row>
+                        {(showCases && renderCaseLabelsMenu()) || (noMoreCasesAlert())}
+                    </Row>
+                </Form>
             </Container>
         </Fragment>
     )

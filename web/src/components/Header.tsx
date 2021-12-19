@@ -9,13 +9,12 @@ interface Props {
 }
 
 const Header: React.FC<Props> = () => {
-    const { state: { name } }: any = useLocation();
-
+    const { state = null}: any = useLocation();
     return (
         <Navbar>
             <Container>
                 <Navbar.Collapse className="justify-content-end">
-                  Loged in as a: {name}
+                  Loged in as a: {state?.name}
                     <Navbar.Text>
                         <Link to="/login" className="nav-link" onClick={async () => logout()}>Log Out</Link>
                     </Navbar.Text>
