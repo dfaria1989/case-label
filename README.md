@@ -47,7 +47,7 @@ npm run up
 It will install all the dependencies on your machine, copy them and initialize the docker container.
 
 ### 4. Run seeds
-- After step 3, run the command below to populate collections into conditions document
+- After step 3, open local cli in source root project and run:
 
 ```nodejs
 npm run seed
@@ -79,12 +79,14 @@ REACT_APP_API_URL = http://localhost:3060/api/
 ```
 
 ### 2. Run project on your local machine
-- Open local cli in /web root project and run:
+- Open local cli in **/web** root project and run:
 
 ```nodejs
 npm install && npm start
 ```
 It will install all the dependencies on your machine and launch the react app in your local machine.
+**Wait a few moments to complete...**
+
 
 ### 3. App credentials - Login
   After you ran the back-end seeders, you must use these credentials to login:
