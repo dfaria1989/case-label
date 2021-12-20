@@ -23,6 +23,10 @@ const userSchema: Schema = new Schema(
       type: String,
       trim: true,
       required: true
+    },
+    name: {
+      type: String,
+      required: true
     }
   },
   {

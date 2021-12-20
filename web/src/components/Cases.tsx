@@ -14,5 +14,4 @@ const Cases: React.FC<CaseType> = ({ _id, case: caseDescription }) =>
     </Form.Group >
 )
 
-
 export default Cases

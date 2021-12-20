@@ -1,14 +1,12 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3060/api/";
-
 export const login = async (username: string, password: string) => {
   const response = await axios
-    .post(API_URL + "auth/login", {
+    .post(process.env.REACT_APP_API_URL + "auth/login", {
       username,
       password,
     });
-  console.log("response.data", response.data);
+
   if (response.data.accessToken) {
     localStorage.setItem("user", JSON.stringify(response.data));
   }

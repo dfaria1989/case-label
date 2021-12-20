@@ -15,11 +15,13 @@ const Conditions = () => {
 
     const conditionOptions = () => {
         if (conditions && (Array.isArray(conditions) && conditions.length > 0)) {
-            return conditions.map((condition) => (<option key={condition._id} value={condition._id}>
-                {condition.ICD_10_Description} {condition.ICD_10}
-            </option>))
+            return conditions.map((condition) => (
+                <option key={condition._id} value={condition._id}>
+                    {condition.ICD_10_Description} {condition.ICD_10}
+                </option>
+            ))
         }
-        return (<option key=""></option>)
+        return (<option key="">No conditions available!</option>)
     }
 
     return (

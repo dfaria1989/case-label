@@ -45,12 +45,16 @@ const userSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: true
+  },
+  name: {
+    type: String,
+    required: true
   }
 });
 
 const modelUser = mongoose.model('user', userSchema);
 
-const caseSchema = new Schema({
+const caseSchema = new mongoose.Schema({
   case: {
     type: String,
     required: true
@@ -60,11 +64,11 @@ const caseSchema = new Schema({
     default: false
   },
   doctor: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
   condition: {
-    type: Schema.Types.ObjectId,
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'condition'
   }
 });
@@ -84,10 +88,11 @@ const modelCase = mongoose.model('case', caseSchema);
     await modelCase.create(cases);
 
     await modelUser.deleteMany();
-    const passwordHashed = await bcryptjs.hash('doctortest', 10);
+    const passwordHashed = await bcryptjs.hash('joesmith', 10);
     await modelUser.create({
-      username: 'doctortest',
-      password: passwordHashed
+      username: 'joesmith',
+      password: passwordHashed,
+      name: 'Dr. Joe Smith'
     });
   } catch (error) {
     console.error(error);

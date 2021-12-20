@@ -1,10 +1,10 @@
 import CaseModel from '../models/case';
 
 export default class Case {
-  static async findAll(viewed: boolean | undefined) {
+  static async findNext(viewed: boolean | undefined) {
     const filter = (viewed && { viewed: viewed }) || {};
     try {
-      const responseData = await CaseModel.find(filter);
+      const responseData = await CaseModel.findOne(filter);
       return { status: true, message: responseData };
     } catch (error: any) {
       throw new Error(error);

@@ -16,8 +16,6 @@ const ProtectedRoute: React.FC<Props> = ({ component: Component, ...rest }) => {
             {...rest}
             render={props => {
                 if (isAuthenticated()) {
-                    console.log("protectedddd")
-
                     return <Component {...props} />
                 } else {
                     return <Redirect to="/login" />

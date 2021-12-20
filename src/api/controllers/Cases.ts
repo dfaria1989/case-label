@@ -2,10 +2,10 @@ import { Response, Request } from 'express';
 import CaseService from '../../services/case';
 
 export default class Cases {
-  static async findAll(req: Request, res: Response): Promise<any> {
+  static async findNext(req: Request, res: Response): Promise<any> {
     try {
       const { viewed }: { viewed?: boolean } = req.query;
-      const response = await CaseService.findAll(viewed);
+      const response = await CaseService.findNext(viewed);
       return res.status(200).json(response);
     } catch (error: any) {
       return res.status(500).json(error.message);

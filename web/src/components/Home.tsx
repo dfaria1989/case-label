@@ -8,12 +8,19 @@ import Cases from './Cases';
 import { CaseType } from 'types';
 
 type Props = {}
+const noMoreCasesAlert = () => {
+    return (
+        <Alert variant="success">
+            <Alert.Heading>You are Done!</Alert.Heading>
+        </Alert>
+    )
+}
 
 const Home: React.FC<Props> = () => {
     const [nextCase, setNextCase] = useState<null | string>(null)
-    const [showCases, setShowCases] = useState<boolean>(false)
+    const [showCases, setShowCases] = useState<boolean| null>(null)
     const [cases, setCases] = useState<CaseType>();
-    
+
     const labelCase = async (e: any) => {
         e.preventDefault()
         if (!e.currentTarget[1].value) {
@@ -42,16 +49,8 @@ const Home: React.FC<Props> = () => {
             }
         }
         fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [nextCase]);
-
-    const noMoreCasesAlert = () => {
-        return (
-            <Alert variant="success">
-                <Alert.Heading>You are Done!</Alert.Heading>
-            </Alert>
-        )
-    }
 
     const renderCaseLabelsMenu = () => {
         return (
@@ -75,7 +74,7 @@ const Home: React.FC<Props> = () => {
             <Container>
                 <Form onSubmit={labelCase} className='form'>
                     <Row>
-                        {(showCases && renderCaseLabelsMenu()) || (noMoreCasesAlert())}
+                        {(showCases && renderCaseLabelsMenu()) || (showCases===false && noMoreCasesAlert())}
                     </Row>
                 </Form>
             </Container>
