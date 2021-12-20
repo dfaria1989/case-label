@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
-import Login from './components/Login/Login';
+import Login from './components/Login';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import ProtectedRoute from './components/ProtectedRoute'

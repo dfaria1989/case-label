@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { login } from "../../services/auth.service";
+import { login } from "../services/auth.service";
 import { RouteComponentProps } from "react-router-dom";
 import { Form } from "react-bootstrap";
 

@@ -26,7 +26,7 @@ const Conditions = () => {
 
     return (
         <Fragment>
-            <select className="form-select" name="condition" size={12} aria-label="multiple select example">
+            <select data-testid="DropdownConditions" className="form-select" name="condition" size={12} aria-label="multiple select example">
                 {conditionOptions()}
             </select>
         </Fragment>
