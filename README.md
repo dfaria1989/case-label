@@ -10,11 +10,14 @@
 
 ----
 
+
 ## Getting Started Back-End
 
 For the initial usage you should have docker compose installed on your machine.
 
-### 1. **.env** file
+### 1. Clone this rep to your local machine.
+
+### 2. **.env** file
 
 The **.env** file must contains the following environment vars:
 
@@ -33,22 +36,24 @@ MONGODB_URI = mongodb://mongo:27017/
 MONGODB_DB_MAIN = case-label
 ```
 
-### 2. Run project into docker container
+### 3. Run project into docker container
 - Open local cli in your root project and run:
 
 ```nodejs
 npm run up
 ```
+**Wait a few minutes to complete...**
+
 It will install all the dependencies on your machine, copy them and initialize the docker container.
 
-### 3. Run seeds
-- After step 2, run the command below to populate collections into conditions document
+### 4. Run seeds
+- After step 3, run the command below to populate collections into conditions document
 
 ```nodejs
 npm run seed
 ```
 
-### 4. Test the endpoints
+### 4. Test the endpoints (Optional)
 - To test all cases, you must import the collection Gyant-challenge.postman_collection into Postamn(is in project root).
 
 Must be run by the respective order:
